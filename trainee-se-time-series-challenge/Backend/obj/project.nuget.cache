@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "A2k1mHPfaX8+rwMQhRWHiAIObrGWVbIKe20sqOrRVTP5hHG+JEccoTbIz6di/tuPXb4QfMJk08N9S3gK8181Ww==",
+  "dgSpecHash": "NOwFpZSPOtjdZQ7fpxvv12HgLuzdLAvnD/a7H0bklpfQum0UaSrY5T/fABcVuYvOZHO3SYObDcxVCVrm/ASxUw==",
   "success": true,
   "projectFilePath": "/Users/elenagraf/Desktop/axpo-hiring-challenges/trainee-se-time-series-challenge/Backend/Backend.csproj",
   "expectedPackageFiles": [
+    "/Users/elenagraf/.nuget/packages/csvhelper/30.0.1/csvhelper.30.0.1.nupkg.sha512",
     "/Users/elenagraf/.nuget/packages/microsoft.aspnetcore.openapi/7.0.5/microsoft.aspnetcore.openapi.7.0.5.nupkg.sha512",
     "/Users/elenagraf/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "/Users/elenagraf/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/Users/elenagraf/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/Users/elenagraf/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "/Users/elenagraf/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "/Users/elenagraf/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
