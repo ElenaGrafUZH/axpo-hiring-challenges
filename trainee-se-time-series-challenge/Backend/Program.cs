@@ -4,10 +4,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+//allows use of controllers for handling incoming HTTP requests and generating answers
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+// registers the DataRepository class as a scoped service in the dependency injection container.
 builder.Services.AddScoped<DataRepository>(provider =>
 {
     var assetsFilePath = "/Users/elenagraf/Desktop/axpo-hiring-challenges/trainee-se-time-series-challenge/Backend/data/assets.json";
@@ -19,17 +19,11 @@ builder.Services.AddScoped<DataRepository>(provider =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+//maps the controllers and their actions as endpoints for handling incoming HTTP requests.
 app.MapControllers();
 
 app.Run();

@@ -16,7 +16,7 @@ namespace Backend.Controllers
         }
 
         [HttpGet("{AssetId}", Name = "GetAllSignalsByAssetId")]
-        public ActionResult<List<Signal>> GetAllSignalsByAsset(int AssetId)
+        public List<Signal> GetAllSignalsByAsset(int AssetId)
         {
             try
             {
