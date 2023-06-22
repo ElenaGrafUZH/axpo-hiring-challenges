@@ -14,14 +14,45 @@ namespace Backend.Controllers
             this.dataRepository = dataRepository;
         }
 
-        [HttpGet("{SignalId}/vars", Name = "GetAllMeasurementsBySignalId")]
-        public List<Measurement> GetAllMeasurementBySignalId(int SignalId, DateTime start, DateTime end)
+        [HttpGet("{SignalId}", Name = "GetMeasurementsBySignalId")]
+        public List<Measurement> GetMeasurementBySignalId(int SignalId)
         {
+            try
+            {
+                var getMeasurements = dataRepository.LoadMeasurements();
+                var measurementBySignal = getMeasurements.Where(m => m.SignalId == SignalId);
+                return measurementBySignal.ToList();
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return new List<Measurement>();
+            }
+        }
 
-            var getMeasurements = dataRepository.LoadMeasurements();
-            var measurementBySignal = getMeasurements.Where(m => m.SignalId == SignalId);
-            var measurementsInRange = measurementBySignal.Where(m => m.Ts >= start && m.Ts <= end).ToList();
-            return measurementsInRange;
+        [HttpGet("{SignalId}/vars", Name = "GetMeasurementsBySignalIdDateRange")]
+        public List<Measurement> GetMeasurementBySignalIdDateRange(int SignalId, DateTime? start = null, DateTime? end = null)
+        {
+            try
+            {
+                var getMeasurements = dataRepository.LoadMeasurements();
+                var measurementBySignal = getMeasurements.Where(m => m.SignalId == SignalId);
+                if (start.HasValue && end.HasValue)
+                {
+                    var measurementsInRange = measurementBySignal.Where(m => m.Ts >= start && m.Ts <= end).ToList();
+                    return measurementsInRange;
+                }
+                else
+                {
+                    return measurementBySignal.ToList();
+                }
+
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return new List<Measurement>();
+            }
         }
 
     }

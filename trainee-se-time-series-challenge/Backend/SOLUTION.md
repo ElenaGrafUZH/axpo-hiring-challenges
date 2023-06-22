@@ -31,6 +31,19 @@ The base URL for accessing the API is: 'https://localhost:{port}'
   - Content-Type: application/json
   - Body: array of signal objects belonging to defined asset, each containing the signal's details
 
+### Get All Measurements for a given Signal
+
+- Method: GET
+- URL: '/measurement/{SignalId}
+- Parameter:
+  - '**SignalId**': type integer
+- Description: Retrieve a list of all measurements for a given signal
+
+* Response:
+  - Status Code: 200 (OK)
+  - Content-Type: application/json
+  - Body: array of measurements objects belonging to defined signal, each containing the measurement's details
+
 ### Get All Measurements for a given Signal with start and end date
 
 - Method: GET

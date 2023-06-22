@@ -22,10 +22,19 @@ public class DataRepository
 
     public List<Asset> LoadAssets()
     {
+        if (string.IsNullOrEmpty(assetsFilePath) || !File.Exists(assetsFilePath))
+        {
+            throw new FileNotFoundException("Asset File not found or invalid file path.");
+        }
+
         using (var reader = new StreamReader(assetsFilePath))
         {
             var json = reader.ReadToEnd();
-            var assets = JsonConvert.DeserializeObject<List<Asset>>(json).ToList();
+            var assets = JsonConvert.DeserializeObject<List<Asset>>(json)?.ToList();
+            if (assets == null)
+            {
+                throw new InvalidDataException("Failed to deserialize signals from JSON.");
+            }
             return assets;
         }
     }
@@ -33,11 +42,19 @@ public class DataRepository
 
     public List<Signal> LoadSignals()
     {
+        if (string.IsNullOrEmpty(signalsFilePath) || !File.Exists(signalsFilePath))
+        {
+            throw new FileNotFoundException("Signal File not found or invalid file path.");
+        }
         using (var reader = new StreamReader(signalsFilePath))
 
         {
             var json = reader.ReadToEnd();
-            var signals = JsonConvert.DeserializeObject<List<Signal>>(json).ToList();
+            var signals = JsonConvert.DeserializeObject<List<Signal>>(json)?.ToList();
+            if (signals == null)
+            {
+                throw new InvalidDataException("Failed to deserialize signals from JSON.");
+            }
             return signals;
         }
 
@@ -52,6 +69,10 @@ public class DataRepository
             Delimiter = "|",
             HasHeaderRecord = true
         };
+        if (string.IsNullOrEmpty(measurementsFilePath) || !File.Exists(measurementsFilePath))
+        {
+            throw new FileNotFoundException("Measurements File not found or invalid file path.");
+        }
         using (var reader = new StreamReader(measurementsFilePath))
         using (var csv = new CsvReader(reader, configuration))
         {

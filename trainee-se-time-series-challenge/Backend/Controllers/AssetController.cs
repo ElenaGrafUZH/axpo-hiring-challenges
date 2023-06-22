@@ -18,8 +18,23 @@ namespace Backend.Controllers
         [HttpGet(Name = "GetAllAssets")]
         public List<Asset> GetAllAssets()
         {
-            var assets = dataRepository.LoadAssets();
-            return assets;
+            try
+            {
+                var assets = dataRepository.LoadAssets();
+                return assets;
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return new List<Asset>();
+            }
+            catch (InvalidDataException ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return new List<Asset>();
+
+            }
+
         }
 
     }
