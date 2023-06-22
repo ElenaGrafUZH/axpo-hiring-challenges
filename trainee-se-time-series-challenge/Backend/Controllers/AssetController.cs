@@ -18,7 +18,7 @@ namespace Backend.Controllers
         [HttpGet(Name = "GetAllAssets")]
         public List<Asset> GetAllAssets()
         {
-            var assets = dataRepository.GetAllAssets();
+            var assets = dataRepository.LoadAssets();
             return assets;
         }
 

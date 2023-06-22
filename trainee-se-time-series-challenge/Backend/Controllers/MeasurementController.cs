@@ -18,9 +18,10 @@ namespace Backend.Controllers
         public List<Measurement> GetAllMeasurementBySignalId(int SignalId, DateTime start, DateTime end)
         {
 
-            var measurements = dataRepository.GetMeasurementsBySignal(SignalId);
-            var measurementsInRange = measurements.Where(m => m.Ts <= start && m.Ts >= end).ToList();
-            return measurements;
+            var getMeasurements = dataRepository.LoadMeasurements();
+            var measurementBySignal = getMeasurements.Where(m => m.SignalId == SignalId);
+            var measurementsInRange = measurementBySignal.Where(m => m.Ts >= start && m.Ts <= end).ToList();
+            return measurementsInRange;
         }
 
     }

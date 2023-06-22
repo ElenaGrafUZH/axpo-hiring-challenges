@@ -20,7 +20,7 @@ public class DataRepository
         this.measurementsFilePath = measurementsFilePath;
     }
 
-    public List<Asset> GetAllAssets()
+    public List<Asset> LoadAssets()
     {
         using (var reader = new StreamReader(assetsFilePath))
         {
@@ -31,13 +31,13 @@ public class DataRepository
     }
 
 
-    public List<Signal> GetAllSignalsByAssetId(int AssetId)
+    public List<Signal> LoadSignals()
     {
         using (var reader = new StreamReader(signalsFilePath))
 
         {
             var json = reader.ReadToEnd();
-            var signals = JsonConvert.DeserializeObject<List<Signal>>(json).Where(s => s.AssetId == AssetId).ToList();
+            var signals = JsonConvert.DeserializeObject<List<Signal>>(json).ToList();
             return signals;
         }
 
@@ -45,7 +45,7 @@ public class DataRepository
     }
 
 
-    public List<Measurement> GetMeasurementsBySignal(int signalId)
+    public List<Measurement> LoadMeasurements()
     {
         var configuration = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
@@ -55,7 +55,7 @@ public class DataRepository
         using (var reader = new StreamReader(measurementsFilePath))
         using (var csv = new CsvReader(reader, configuration))
         {
-            var measurements = csv.GetRecords<Measurement>().Where(m => m.SignalId == signalId).ToList();
+            var measurements = csv.GetRecords<Measurement>().ToList();
             return measurements;
         }
     }

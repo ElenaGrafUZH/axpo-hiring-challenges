@@ -18,7 +18,8 @@ namespace Backend.Controllers
         [HttpGet("{AssetId}", Name = "GetAllSignalsByAssetId")]
         public ActionResult<List<Signal>> GetAllSignalsByAsset(int AssetId)
         {
-            var signals = dataRepository.GetAllSignalsByAssetId(AssetId);
+            var getSignals = dataRepository.LoadSignals();
+            var signals = getSignals.Where(s => s.AssetId == AssetId).ToList();
             return signals;
         }
 
