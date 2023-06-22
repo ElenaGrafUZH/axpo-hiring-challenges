@@ -4,7 +4,7 @@
 
 ## Base URL
 
-The base URL for accessing the API is: 'https://localhost:{port}/api'
+The base URL for accessing the API is: 'https://localhost:{port}'
 
 ## Endpoints
 
@@ -34,11 +34,11 @@ The base URL for accessing the API is: 'https://localhost:{port}/api'
 ### Get All Measurements for a given Signal with start and end date
 
 - Method: GET
-- URL: '/measurement/{SignalId}/{StartDateTime}/{EndDateTime}
+- URL: '/measurement/{SignalId}/vars?start={yyyy-MM-dd HH:mm:ss}&&end{yyyy-MM-dd HH:mm:ss}
 - Parameter:
   - '**SignalId**': type integer
-  - '**StartDateTime**': type DateTime -> input format 'yyy-MM-dd HH:mm:ss'
-  - '**EndDateTime**': type DateTime -> input format 'yyy-MM-dd HH:mm:ss'
+  - '**start**': type DateTime -> input format 'yyyy-MM-dd HH:mm:ss'
+  - '**end**': type DateTime -> input format 'yyyy-MM-dd HH:mm:ss'
 - Description: Retrieve a list of all measurements for a given signal in a specific time range from the provided data file.
 
 * Response:

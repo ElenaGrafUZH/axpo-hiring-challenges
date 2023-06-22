@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using Backend.Models;
 
 namespace Backend.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class MeasurementController : ControllerBase
     {
         private readonly DataRepository dataRepository;
@@ -15,15 +14,12 @@ namespace Backend.Controllers
             this.dataRepository = dataRepository;
         }
 
-        [HttpGet("{SignalId}/{StartDateTime}/{EndDateTime}", Name = "GetAllMeasurementsBySignalId")]
-        public List<Measurement> GetAllMeasurementBySignalId(int SignalId, DateTime StartDateTime, DateTime EndDateTime)
+        [HttpGet("{SignalId}/vars", Name = "GetAllMeasurementsBySignalId")]
+        public List<Measurement> GetAllMeasurementBySignalId(int SignalId, DateTime start, DateTime end)
         {
 
-            // DateTime StartDateTime = DateTime.Parse(StartDateTimeStr);
-            // DateTime EndDateTime = DateTime.Parse(EndDateTimeStr);
-
             var measurements = dataRepository.GetMeasurementsBySignal(SignalId);
-            var measurementsInRange = measurements.Where(m => m.Ts <= EndDateTime && m.Ts >= StartDateTime).ToList();
+            var measurementsInRange = measurements.Where(m => m.Ts <= start && m.Ts >= end).ToList();
             return measurements;
         }
 

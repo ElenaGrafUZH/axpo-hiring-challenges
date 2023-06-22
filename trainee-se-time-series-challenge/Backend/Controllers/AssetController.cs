@@ -5,7 +5,7 @@ using Backend.Models;
 namespace Backend.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class AssetController : ControllerBase
     {
         private readonly DataRepository dataRepository;
